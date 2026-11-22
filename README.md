@@ -79,7 +79,7 @@ No dependencies, no network calls, no telemetry. Your code never leaves the mach
 - **Attack graph**: all chains merged into one layered graph; click a chain to highlight its route
 - **All findings**: searchable, with evidence, location and how many chains each one feeds
 
-A pre-built report for the demo shop is in [`docs/sample-report.html`](docs/sample-report.html). Download it and open it in a browser.
+**[See the live sample report for the demo shop →](https://rhizzyxvaici171-cloud.github.io/chainbreaker/sample-report.html)**
 
 ## How it works
 
