@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "chainbreaker"
+version = "0.1.0"
+description = "Find attack chains, not just vulnerabilities."
+readme = "README.md"
+license = {text = "MIT"}
+authors = [{name = "Rhizzy X Vaici"}]
+requires-python = ">=3.9"
+dependencies = []
+keywords = ["security", "sast", "attack-path", "devsecops", "scanner", "threat-modeling"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Topic :: Security",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+]
+
+[project.urls]
+Homepage = "https://github.com/rhizzyxvaici171-cloud/chainbreaker"
+
+[project.scripts]
+chainbreaker = "chainbreaker.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

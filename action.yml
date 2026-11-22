@@ -1,0 +1,55 @@
+name: "ChainBreaker"
+description: "Find attack chains, not just vulnerabilities. Links weaknesses into real attack paths and tells you what to fix first."
+author: "Rhizzy X Vaici"
+branding:
+  icon: "link"
+  color: "red"
+
+inputs:
+  path:
+    description: "Directory to scan"
+    default: "."
+  fail-on:
+    description: "Fail the job if any chain is at least this severe: none, low, medium, high, critical"
+    default: "critical"
+  assume:
+    description: "Attacker starting capabilities, comma-separated"
+    default: "internet,source_read"
+  exclude:
+    description: "Comma-separated directories or files to skip"
+    default: ""
+  html-report:
+    description: "Where to write the HTML report"
+    default: "chainbreaker-report.html"
+  sarif:
+    description: "Where to write SARIF (upload it with github/codeql-action/upload-sarif)"
+    default: "chainbreaker.sarif"
+
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
+    - name: Install ChainBreaker
+      shell: bash
+      run: python -m pip install --quiet "$GITHUB_ACTION_PATH"
+    - name: Scan
+      shell: bash
+      # Inputs go through env vars, never straight into the script, so they cannot inject shell.
+      env:
+        CB_PATH: ${{ inputs.path }}
+        CB_FAIL_ON: ${{ inputs.fail-on }}
+        CB_ASSUME: ${{ inputs.assume }}
+        CB_EXCLUDE: ${{ inputs.exclude }}
+        CB_HTML: ${{ inputs.html-report }}
+        CB_SARIF: ${{ inputs.sarif }}
+      run: |
+        chainbreaker scan "$CB_PATH" \
+          --assume "$CB_ASSUME" \
+          --exclude "$CB_EXCLUDE" \
+          --html "$CB_HTML" \
+          --sarif "$CB_SARIF" \
+          --markdown "$GITHUB_STEP_SUMMARY" \
+          --fail-on "$CB_FAIL_ON" \
+          --no-color

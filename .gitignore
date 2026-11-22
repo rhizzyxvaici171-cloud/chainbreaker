@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+.pytest_cache/
+chainbreaker-report.html
+chainbreaker.sarif
+report.html
+.env
+# the demo target's .env is committed on purpose
+!examples/vulnerable-shop/.env
