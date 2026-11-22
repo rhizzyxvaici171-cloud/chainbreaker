@@ -9,7 +9,7 @@ ChainBreaker links the weaknesses in your code, config and containers into the a
 attacker would walk, ranks them by what you'd lose, and tells you the **fewest fixes that break them all**.
 
 [![CI](https://github.com/rhizzyxvaici171-cloud/chainbreaker/actions/workflows/ci.yml/badge.svg)](https://github.com/rhizzyxvaici171-cloud/chainbreaker/actions/workflows/ci.yml)
-![Python](https://img.shields.io/badge/python-3.9%2B-blue)
+![Python](https://img.shields.io/badge/python-3.10%2B-blue)
 ![Dependencies](https://img.shields.io/badge/dependencies-zero-brightgreen)
 ![License](https://img.shields.io/badge/license-MIT-lightgrey)
 
@@ -149,7 +149,7 @@ jobs:
   scan:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: rhizzyxvaici171-cloud/chainbreaker@main
         with:
           fail-on: critical          # fail the build on any critical chain

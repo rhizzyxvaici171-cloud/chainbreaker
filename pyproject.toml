@@ -9,7 +9,7 @@ description = "Find attack chains, not just vulnerabilities."
 readme = "README.md"
 license = {text = "MIT"}
 authors = [{name = "Rhizzy X Vaici"}]
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 dependencies = []
 keywords = ["security", "sast", "attack-path", "devsecops", "scanner", "threat-modeling"]
 classifiers = [
