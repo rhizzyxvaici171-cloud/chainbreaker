@@ -44,7 +44,8 @@ def render(a: Analysis, target: str, files: int, color: bool = True, limit: int 
     for c in a.chains[:limit]:
         badge = p(f" {c.severity.upper()} {c.risk:>4} ", SEV_STYLE[c.severity])
         goals = " + ".join(cap_label(g) for g in c.goals)
-        w(f"  {badge} {p(c.id, '2')}  {p('→ ' + goals, '1')}   {p(f'{len(c.steps)} step{"s" if len(c.steps) != 1 else ""}, likelihood {c.likelihood:.0%}', '2')}")
+        steps = f"{len(c.steps)} step{'s' if len(c.steps) != 1 else ''}, likelihood {c.likelihood:.0%}"
+        w(f"  {badge} {p(c.id, '2')}  {p('→ ' + goals, '1')}   {p(steps, '2')}")
         starts = sorted(set().union(*(s.requires for s in c.steps)) & set(a.assumptions))
         w(p(f"      start  {'; '.join(cap_label(s) for s in starts)}", "2"))
         later_needs = set(c.goals)
